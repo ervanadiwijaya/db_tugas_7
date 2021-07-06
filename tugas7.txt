@@ -1,0 +1,52 @@
+1. create table
+
+CREATE TABLE `daerah` (
+  `kota` varchar(100) NOT NULL,
+  `tot_kecamatan` bigint(20) UNSIGNED NOT NULL,
+  `tot_kelurahan` bigint(20) UNSIGNED NOT NULL,
+  `luas` float NOT NULL,
+  `tot_penduduk` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+2. insert ... value
+
+INSERT INTO `daerah` (`kota`, `tot_kecamatan`, `tot_kelurahan`, `luas`, `tot_penduduk`) VALUES
+('Jakarta', 44, 267, 664, 9988495),
+('Surabaya', 31, 154, 350, 2805906),
+('Medan', 21, 151, 265, 2465469),
+('Bekasi', 12, 56, 206, 2381053),
+('Bandung', 30, 154, 350, 2339463),
+('Makassar', 14, 151, 265, 1651146),
+('Depok', 11, 267, 664, 1631951),
+('Semarang', 16, 154, 350, 1621384);
+
+3. insert ... set
+
+INSERT INTO daerah
+SET
+	kota = 'Tangerang',
+	tot_kecamatan = 13,
+	tot_kelurahan= 104,
+	luas= 153,
+	tot_penduduk= 1566190;
+
+INSERT INTO daerah
+SET
+	kota = 'Palembang',
+	tot_kecamatan = 14,
+	tot_kelurahan= 107,
+	luas= 369,
+	tot_penduduk= 1548064;
+
+4. create table 2
+
+CREATE TABLE kota LIKE daerah;
+
+5. delete column
+
+ALTER TABLE kota DROP tot_kecamatan, DROP tot_kelurahan, DROP luas;
+
+6. insert value
+
+INSERT INTO kota (kota, tot_penduduk)
+    -> SELECT kota, tot_penduduk FROM daerah;
